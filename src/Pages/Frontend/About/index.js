@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../context/AuthContext";
 import { Typewriter } from "react-simple-typewriter";
 
+
 const AboutUs = () => {
   const { ThemeToggle } = useAuthContext();
 
   return (
     <div className="min-h-screen font-raleway bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-white px-4 sm:px-8 py-12">
+      
       <div className="max-w-5xl mx-auto text-center">
         <div className="absolute right-6 top-3">
           <ThemeToggle />

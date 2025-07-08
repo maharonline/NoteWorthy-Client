@@ -16,22 +16,23 @@ export default function Navbar() {
   return (
     <>
       
-      <div className="w-full flex items-center justify-between px-4 py-2 bg-white dark:bg-[#0f172a] z-50 sticky">
+      {/* <div className="w-full flex items-center justify-between px-4  bg-red-500 dark:bg-[#0f172a] z-50 sticky top-0 "> */}
+      <div className="w-full flex items-center justify-between px-4  bg-gradient-to-r from-white via-gray-100 to-white  text-blue-600 dark:from-[#0f172a] dark:via-[#1e293b] dark:to-[#0f172a] z-50 sticky top-0 ">
         {/* Left: Logo */}
         <div className="flex items-center">
           <img
             src="/Assets/image/Logo.png"
             alt="NoteWorthy Logo"
-            className="h-24 object-contain"
+            className="h-28 object-contain -my-6"
           />
         </div>
 
         {/* Center: Navigation Links (Desktop) */}
         <div className="hidden md:flex space-x-6 text-base font-medium text-blue-600">
-          <Link to="/" className="dark:hover:text-gray-300 hover:text-black transition">Home</Link>
-          <Link to="/about" className="dark:hover:text-gray-300 hover:text-black transition">About</Link>
-          <Link to="/contact" className="dark:hover:text-gray-300 hover:text-black transition">Contact Us</Link>
-          <Link to="/faq" className="dark:hover:text-gray-300 hover:text-black transition">FAQ</Link>
+          <Link to="/" className="dark:hover:text-white hover:text-black transition">Home</Link>
+          <Link to="/about" className="dark:hover:text-white hover:text-black transition">About</Link>
+          <Link to="/contact" className="dark:hover:text-white hover:text-black transition">Contact Us</Link>
+          <Link to="/faq" className="dark:hover:text-white hover:text-black transition">FAQ</Link>
         </div>
 
         {/* Right: Theme Toggle + Auth Buttons (Desktop) */}

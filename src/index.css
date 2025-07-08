@@ -69,3 +69,6 @@ code {
     @apply w-full h-60 bg-white dark:bg-gray-800 p-4 rounded shadow;
   }
 }
+.gradient-btn{
+  @apply bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white
+}

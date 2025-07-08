@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import { useAuthContext } from "../../../context/AuthContext";
 
 
+
 const HomePage = () => {
   const{themeState}=useAuthContext()
   
@@ -28,8 +29,8 @@ const HomePage = () => {
 
 
   return (
-    <div className="min-h-screen dashboard-bg  text-base-content px-4 md:px-10 font-raleway " data-aos="fade-down">
-     
+    <div className="min-h-screen pt-14 dashboard-bg  text-base-content px-4 md:px-10 font-raleway " data-aos="fade-down">
+   
 
       {/* Hero Section */}
       <div className="flex flex-col lg:flex-row items-center justify-evenly mb-14 font-raleway">
@@ -149,23 +150,23 @@ const HomePage = () => {
       <section data-aos="fade-up" className="text-center card-bg py-12 rounded-lg mt-10 shadow-lg">
         <h2 className="text-2xl md:text-3xl font-bold">Want to Contribute or Need Help?</h2>
         <p className="mt-2">Contact us or share your notes to help other students grow!</p>
-        <button className="mt-6 bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-100 transition">
+        <button className="mt-6 bg-blue-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-100 transition">
           Join Us / Contact
         </button>
       </section>
 
       {/* Footer */}
-      <footer className="mt-20 card-bg  rounded-t-xl " data-aos="fade-up">
+      <footer className="mt-20  bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500  text-white dark:from-[#0f172a] dark:via-[#1e293b] dark:to-[#0f172a]  py-10 px-4  rounded-t-xl " data-aos="fade-up">
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm ">
           <div>
             
-            <img src="/Assets/image/Logo.png" alt="NoteWorthy Logo" className="h-24 object-contain position-absolute top-0 bottom-0" />
-            <p >
+            <img src="/Assets/image/logo_white_text.png" alt="NoteWorthy Logo" className="h-28 -my-10  object-contain position-absolute top-0 bottom-0" />
+            <p className="mt-5">
               GC University outlined notes with 100% relevance — specially made for affiliated college students struggling to find structured, semester-wise study material.            </p>
           </div>
 
           <div>
-            <h4 className="text-md font-semibold mt-10 px-5 text-blue-600 mb-2">Quick Links</h4>
+            <h4 className="text-md font-semibold  px-5  mb-2">Quick Links</h4>
             <ul className="space-y-1 px-5">
               <li><Link to="/" className="hover:underline">Home</Link></li>
               <li><Link to="/about" className="hover:underline">About</Link></li>
@@ -175,7 +176,7 @@ const HomePage = () => {
           </div>
 
           <div>
-            <h4 className="text-md font-semibold mt-10 px-5 text-blue-600  mb-2">Connect</h4>
+            <h4 className="text-md font-semibold  px-5   mb-2">Connect</h4>
             <ul className="space-y-1 px-5">
               <li><a href="mailto:support@noteworthy.com" className="hover:underline">support@noteworthy.com</a></li>
               <li><a href="https://facebook.com" className="hover:underline">Facebook</a></li>
@@ -185,7 +186,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="text-center text-xs py-4 mt-6 border-t dark:border-white border-black ">
+        <div className="text-center text-xs py-4 mt-6 border-t  border-white  ">
           &copy; {new Date().getFullYear()} NoteWorthy. All rights reserved.
         </div>
       </footer>

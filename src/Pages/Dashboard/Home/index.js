@@ -384,7 +384,7 @@ const Home = () => {
 
 
         {/* Footer */}
-        <footer className="text-xs text-gray-500 text-center mt-10 mb-4">
+        <footer className="text-xs text-black text-center mt-10 mb-4">
           v1.0.0 • © 2025 NoteWorthy • <Link to="/privacy" className="underline">Privacy Policy</Link>
         </footer>
       </div>
@@ -393,4 +393,6 @@ const Home = () => {
 };
 
 export default Home;
+
+
 
