@@ -11,7 +11,7 @@ const Subjects = () => {
   const {users}=useAuthContext()
 
   const getallSubjects = useCallback(async () => {
-    const response = await axios.get("http://localhost:8000/api/subject/get")
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/subject/get`)
     setallSubjects(response?.data)
     console.log(response.data);
 
@@ -19,7 +19,7 @@ const Subjects = () => {
 
  const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8000/api/subject/delete/${id}`);
+      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/subject/delete/${id}`);
       window.toastify(res.data.message, "success");
       setallSubjects((prev) => prev.filter((item) => item._id !== id));
     } catch (error) {

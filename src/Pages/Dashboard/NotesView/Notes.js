@@ -79,7 +79,7 @@ export default function CourseNotes() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8000/api/notes/delete/${id}`);
+      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/notes/delete/${id}`);
       window.toastify(res.data.message, "success");
       setNotes((prev) => prev.filter((item) => item._id !== id));
     } catch (error) {

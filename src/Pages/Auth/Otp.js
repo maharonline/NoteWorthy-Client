@@ -57,7 +57,7 @@ export default function Otp() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/verifyemail",
+        `${process.env.REACT_APP_API_URL}/auth/verifyemail`,
         { enteredOtp },
         { withCredentials: true }
       );
@@ -88,7 +88,7 @@ export default function Otp() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/auth/resendotp",
+        `${process.env.REACT_APP_API_URL}/auth/resendotp`,
         {},
         { withCredentials: true }
       );

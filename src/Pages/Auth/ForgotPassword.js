@@ -21,7 +21,7 @@ export default function ForgotPassword() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8000/api/auth/forgotPassword", { email });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/forgotPassword`, { email });
 
 
       window.toastify(response?.data?.message || "Check your email", "success");

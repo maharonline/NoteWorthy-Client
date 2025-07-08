@@ -11,7 +11,7 @@ export default function AdminApprovalTable() {
 
   const fetchTeachers = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/teacher/getallteachers')
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/teacher/getallteachers`)
 
       setDocuments(response?.data?.teacher);
       setFilteredDocuments(response?.data?.teacher);
@@ -26,7 +26,7 @@ export default function AdminApprovalTable() {
 
   const handleApproved = async (teacher) => {
     try {
-      const res = await axios.post('http://localhost:8000/api/teacher/approvedTeacher', teacher);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/teacher/approvedTeacher`, teacher);
       window.toastify(res?.data?.message, 'success');
     } catch (error) {
       console.error('Error completing the todo: ', error);
@@ -40,7 +40,7 @@ export default function AdminApprovalTable() {
 
   const handleRejected = async (teacher) => {
     try {
-      const res = await axios.post('http://localhost:8000/api/teacher/rejectedTeacher', teacher);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/teacher/rejectedTeacher`, teacher);
       window.toastify(res.data.message, 'success');
     } catch (error) {
       console.error('Error deleting the todo: ', error);

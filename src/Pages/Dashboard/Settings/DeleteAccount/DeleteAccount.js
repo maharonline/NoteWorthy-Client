@@ -13,7 +13,7 @@ export default function DeleteAccount() {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      const res = await axios.delete(`http://localhost:8000/api/auth/delete/${users?._id}`, {
+      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/auth/delete/${users?._id}`, {
         withCredentials: true,
       });
 

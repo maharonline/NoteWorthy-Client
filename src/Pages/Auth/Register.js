@@ -25,7 +25,7 @@ export default function Register() {
 
     setisLoading(true);
     try {
-      const res = await axios.post("http://localhost:8000/api/auth/register", { userName, email, password, rollno, semester, department:"Bs Computer Science " }, { withCredentials: true });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, { userName, email, password, rollno, semester, department:"Bs Computer Science " }, { withCredentials: true });
       window.toastify(res?.data?.message, "success");
 
 

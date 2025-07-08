@@ -28,7 +28,7 @@ const Home = () => {
     try {
       const id = item._id
 
-      const res = await axios.delete(`http://localhost:8000/api/favourite/delete/${id}`);
+      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/favourite/delete/${id}`);
       setFavorites((prev) => prev.filter(fav => fav._id !== id));
 
       window.toastify(res.data.message, "success")
@@ -40,7 +40,7 @@ const Home = () => {
 
   const getDownloadSummary = useCallback(async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/download/summary`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/download/summary`, {
         params: { userId: users._id }
       });
       setTotalDownload(res?.data.summary)
@@ -51,7 +51,7 @@ const Home = () => {
   }, [users._id])
   const getNotesUploadedByTeacher = useCallback(async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/notes/getNotesUploadedByTeacher`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/notes/getNotesUploadedByTeacher`, {
         params: { uploadedBy: users._id }
       });
       setGetTeacherUpload(res?.data.summary)
@@ -62,7 +62,7 @@ const Home = () => {
   }, [users._id])
   const getRecentDownload = useCallback(async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/download/recentDownload`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/download/recentDownload`, {
         params: { userId: users._id }
       });
 
@@ -97,7 +97,7 @@ const Home = () => {
 
   const fetchFavorites = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/favourite/${users?._id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/favourite/${users?._id}`);
       if (response.data.success) {
         setFavorites(response?.data?.favorites);
         console.log("New favorites from server: ", response.data.favorites);
@@ -110,7 +110,7 @@ const Home = () => {
   const fetchNotes = useCallback(async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/notes/user/${users?._id}`
+        `${process.env.REACT_APP_API_URL}/notes/user/${users?._id}`
       );
       setNotes(res.data.notes || []);
       console.log("Fetched Notes:", res.data.notes);

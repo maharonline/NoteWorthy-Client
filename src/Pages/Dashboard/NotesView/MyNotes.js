@@ -12,7 +12,7 @@ const MyNotes = () => {
   const fetchNotes = useCallback(async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/notes/user/${users?._id}`
+        `${process.env.REACT_APP_API_URL}/notes/user/${users?._id}`
       );
       setNotes(res.data.notes || []);
       console.log("Fetched Notes:", res.data.notes);

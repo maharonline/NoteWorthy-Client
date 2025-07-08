@@ -25,7 +25,7 @@ export default function RegisterTeacher() {
 
     setisLoading(true);
     try {
-      const res = await axios.post("http://localhost:8000/api/teacher/registerTeacher", { userName, email, password, employeeId, department: "Bs Computer Science" }, { withCredentials: true });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/registerTeacher`, { userName, email, password, employeeId, department: "Bs Computer Science" }, { withCredentials: true });
       window.toastify(res?.data?.msg, "success");
 
       navigate("/");

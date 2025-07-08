@@ -41,7 +41,7 @@ const ProfilePage = () => {
   const fetchNotes = useCallback(async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/notes/user/${users?._id}`
+        `${process.env.REACT_APP_API_URL}/notes/user/${users?._id}`
       );
       setNotes(res.data.notes || []);
       console.log("Fetched Notes:", res.data.notes);
@@ -56,7 +56,7 @@ const ProfilePage = () => {
       const id = item._id
       console.log("Favourite Deletion Click", id);
 
-      const res = await axios.delete(`http://localhost:8000/api/favourite/delete/${id}`);
+      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/favourite/delete/${id}`);
       setFavorites((prev) => prev.filter(fav => fav._id !== id));
       window.toastify(res.data.message, "success")
 
@@ -68,7 +68,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUserFeedbacks = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/api/feedback/get/${users._id}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/feedback/get/${users._id}`);
         setFeedbacks(res.data.feedbacks || []);
       } catch (error) {
         console.error("Error fetching feedbacks:", error);
@@ -83,7 +83,7 @@ const ProfilePage = () => {
 
   const getDownloadSummary = useCallback(async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/download/summary`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/download/summary`, {
         params: { userId: users._id }
       });
       setTotalDownload(res.data)
@@ -94,7 +94,7 @@ const ProfilePage = () => {
   }, [users._id])
   const fetchFavorites = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/favourite/${users?._id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/favourite/${users?._id}`);
       if (response.data.success) {
         setFavorites(response?.data?.favorites);
         console.log("New favorites from server: ", response.data.favorites);
@@ -107,7 +107,7 @@ const ProfilePage = () => {
 
   const getRecentDownload = useCallback(async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/download/recentDownload`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/download/recentDownload`, {
         params: { userId: users._id }
       });
 
@@ -139,7 +139,7 @@ const ProfilePage = () => {
   const handleUpdate = async () => {
 
     try {
-      const res = await axios.put(`http://localhost:8000/api/feedback/update/${currentFeedback._id}`, {
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}/feedback/update/${currentFeedback._id}`, {
         editedText,
       });
       setEditModalOpen(false);
@@ -153,7 +153,7 @@ const ProfilePage = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8000/api/feedback/delete/${id}`);
+      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/feedback/delete/${id}`);
 
       window.toastify(res?.data.message, "success");
 

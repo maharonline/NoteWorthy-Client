@@ -31,7 +31,7 @@ export default function PasswordUpdate() {
     setLoading(true);
     try {
       const res = await axios.put(
-        `http://localhost:8000/api/auth/updatePassword/${users?._id}`,
+        `${process.env.REACT_APP_API_URL}/auth/updatePassword/${users?._id}`,
         {
           currentPassword,
           newPassword,

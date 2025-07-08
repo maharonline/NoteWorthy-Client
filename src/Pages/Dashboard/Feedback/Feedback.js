@@ -12,7 +12,7 @@ export default function Feedbacks() {
   useEffect(() => {
     const fetchUserFeedbacks = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/api/feedback/allget`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/feedback/allget`);
         if (res.data.success) {
           setFeedbacks(res.data.allFeedbacks);
         } else {
@@ -29,7 +29,7 @@ export default function Feedbacks() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8000/api/feedback/delete/${id}`);
+      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/feedback/delete/${id}`);
       window.toastify(res.data.message, "success");
       setFeedbacks((prev) => prev.filter((item) => item._id !== id));
     } catch (error) {

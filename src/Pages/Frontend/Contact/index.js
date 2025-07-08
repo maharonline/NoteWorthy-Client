@@ -13,7 +13,7 @@ const ContactUs = () => {
     try {
       if (!name || !email || !message) { return window.toastify("Please fill in all fields!", "info") }
       setIsLoading(true)
-      const res = await axios.post("http://localhost:8000/api/frontend/contact", {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/frontend/contact`, {
         name,
         email,
         message,
