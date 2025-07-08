@@ -31,7 +31,7 @@ export default function AuthContext({ children }) {
   const getUser = useCallback(async () => {
    
     try { 
-      const response = await axios.get("http://localhost:8000/api/auth/user",{ withCredentials: true,});
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/user`,{ withCredentials: true,});
   
       if (response.status === 200) {
         const { user,isEmailVerified } = response.data;
