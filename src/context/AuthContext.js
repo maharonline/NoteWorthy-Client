@@ -94,7 +94,7 @@ const handleLogout = async () => {
   if (result.isConfirmed) {
     try {
       const res=await axios.post(
-        "http://localhost:8000/api/auth/logout",
+        `${process.env.REACT_APP_API_URL}/auth/logout`,
         {},
         { withCredentials: true }
       );
@@ -112,7 +112,7 @@ const handleLogout = async () => {
 
 const deleteLogout=async()=>{
   try {
-      await axios.post("http://localhost:8000/api/auth/logout",{},{ withCredentials: true });
+      await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`,{},{ withCredentials: true });
       dispatch({ type: "SET_LOGGED_OUT" });
       setUsers(null);
       navigate("/auth/login");

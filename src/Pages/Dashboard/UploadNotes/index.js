@@ -34,7 +34,7 @@
 
 //     setisLoading(true)
 //     try {
-//       const res = await axios.post("http://localhost:8000/api/notes/create", data, {
+//       const res = await axios.post(`${process.env.REACT_APP_API_URL}/notes/create`, data, {
 //         headers: {
 //           "Content-Type": "multipart/form-data",
 //         },

@@ -296,7 +296,7 @@ const ProfilePage = () => {
                       <button
                         onClick={async () => {
                           try {
-                            await axios.post("http://localhost:8000/api/download/downloadDetail", {
+                            await axios.post(`${process.env.REACT_APP_API_URL}/download/downloadDetail`, {
                               noteId: item._id,
                               userId: users._id,
                             });

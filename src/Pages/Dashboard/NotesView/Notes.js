@@ -16,7 +16,7 @@ export default function CourseNotes() {
 
   const fetchNotes = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:8000/api/notes/get', {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/notes/get`, {
         params: { id }
       });
       setNotes(res.data);
@@ -37,7 +37,7 @@ export default function CourseNotes() {
   const handleFavourite = async (note) => {
 
     try {
-      const res = await axios.post('http://localhost:8000/api/favourite/add', {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/favourite/add`, {
         noteId: note._id,
         title: note.title,
         fileUrl: note.fileUrl,
@@ -59,7 +59,7 @@ export default function CourseNotes() {
   const submitFeedback = async (noteId) => {
     setisLoading(true)
     try {
-      const res = await axios.post("http://localhost:8000/api/feedback/createfeedback", {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/feedback/createfeedback`, {
         noteId,
         userId: users._id,
         feedback: feedbacks[noteId],
@@ -136,7 +136,7 @@ export default function CourseNotes() {
                   onClick={async () => {
                     try {
                       //==== Record download in DB ====
-                      await axios.post("http://localhost:8000/api/download/downloadDetail", {
+                      await axios.post(`${process.env.REACT_APP_API_URL}/download/downloadDetail`, {
                         noteId: note._id,
                         userId: users._id,
                       });

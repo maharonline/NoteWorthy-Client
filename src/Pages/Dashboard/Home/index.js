@@ -75,7 +75,7 @@ const Home = () => {
 
   const fetchTeachers = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/teacher/getallteachers");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/teacher/getallteachers`);
       if (response?.data?.success) {
         setTeacher(response?.data?.count);
       }
@@ -86,7 +86,7 @@ const Home = () => {
 
   const fetchStudent = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/auth/getallStudent");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/getallStudent`);
       if (response?.data?.success) {
         setStudent(response?.data?.count);
       }
