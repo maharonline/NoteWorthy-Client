@@ -39,7 +39,7 @@ const Sidebar = () => {
         <aside className="w-64 dark:text-white h-screen shadow fixed z-40 ">
           <div className="flex flex-col items-center">
             <img
-              src="/Assets/image/Logo.png"
+              src="/Assets/image/logo.png"
               alt="Logo"
               className="h-32 w-auto object-contain"
             />
