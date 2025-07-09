@@ -36,7 +36,7 @@ const Sidebar = () => {
   return (
     <>
       {users?.status === "pending" && users?.roles?.includes("Teacher") ? null : (
-        <aside className="w-64 dark:text-white h-screen shadow fixed z-40 ">
+        <aside className="w-64 dark:text-white h-screen overflow-y-auto shadow fixed z-40 ">
           <div className="flex flex-col items-center">
             <img
               src="/Assets/image/logo.png"
