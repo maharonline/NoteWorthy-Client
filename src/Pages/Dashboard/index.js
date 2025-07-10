@@ -54,10 +54,12 @@ export default function Dashboard() {
               onClick={() => setDrawerOpen(false)}
             >
               <div
-                className="absolute left-0 top-0 w-64 h-full overflow-y-auto bg-white dark:bg-gray-900 shadow"
+                className="absolute left-0 top-0 w-64 h-full overflow-y-auto bg-white dark:bg-gray-900 shadow flex flex-col"
                 onClick={(e) => e.stopPropagation()}
               >
-                <Sidebar onNavigate={() => setDrawerOpen(false)} />
+                <div className="flex-1 overflow-y-auto">
+    <Sidebar onNavigate={() => setDrawerOpen(false)} />
+  </div>
               </div>
             </div>
           )}
