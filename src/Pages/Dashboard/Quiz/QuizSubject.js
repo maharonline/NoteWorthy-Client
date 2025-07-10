@@ -25,10 +25,13 @@ const QuizSubjects = () => {
       <main className="flex-1 p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <h1 className="text-2xl font-bold text-center md:text-left w-full">CS Subjects</h1>
-           <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-    <div className="hidden">
-            <ThemeToggle />
-    <div/>
+
+
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+              <div className="hidden">
+              <ThemeToggle />
+            </div>
+
             <input
               type="text"
               placeholder="Search by course title"
