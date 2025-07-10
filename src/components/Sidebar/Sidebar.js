@@ -37,7 +37,7 @@ const Sidebar = ({ onNavigate = () => {} }) => {
   return (
     <>
       {users?.status === 'pending' && users?.roles?.includes('Teacher') ? null : (
-        <aside className="w-64 dark:text-white min-h-screen overflow-y-auto shadow  z-40">
+        <aside className="w-64 dark:text-white min-h-screen overflow-y-auto shadow fixed z-40">
           {/* Logo */}
           <div className="flex flex-col items-center">
             <img src="/Assets/image/logo.png" alt="Logo" className="h-32 w-auto object-contain" />
@@ -99,7 +99,7 @@ const Sidebar = ({ onNavigate = () => {} }) => {
           </nav>
 
           {/* Logout */}
-          <div className="mt-6 px-10 py-4 border-t border-blue-600 ">
+          <div className="mt-6 px-10 py-4 border-t border-gray-200 ">
             <button
               onClick={handleLogout}
               className="w-full flex items-center gap-2 p-2 rounded hover:bg-blue-600"
