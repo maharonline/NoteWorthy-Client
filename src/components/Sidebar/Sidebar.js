@@ -34,83 +34,83 @@ const Sidebar = ({ onNavigate = () => {} }) => {
     setOpenDropdown((prev) => (prev === index ? null : index));
   };
 
-  if (users?.status === 'pending' && users?.roles?.includes('Teacher')) return null;
-
   return (
-    <aside className="w-64 flex flex-col h-full dark:text-white bg-white dark:bg-[#0f172a]">
-      {/* Logo */}
-      <div className="flex flex-col items-center p-4">
-        <img src="/Assets/image/logo.png" alt="Logo" className="h-32 w-auto object-contain" />
-      </div>
+    <>
+      {users?.status === 'pending' && users?.roles?.includes('Teacher') ? null : (
+        <aside className="w-64 dark:text-white min-h-screen overflow-y-auto shadow  z-40">
+          {/* Logo */}
+          <div className="flex flex-col items-center">
+            <img src="/Assets/image/logo.png" alt="Logo" className="h-32 w-auto object-contain" />
+          </div>
 
-      {/* Scrollable Nav Items */}
-      <div className="flex-1 overflow-y-auto px-10 space-y-2">
-        <nav>
-          {navItems.map((item, idx) => (
-            <div key={idx}>
-              {item.link ? (
-                <NavLink
-                  to={item.link}
-                  end
-                  onClick={onNavigate}
-                  className={({ isActive }) =>
-                    `flex items-center gap-2 p-2 rounded hover:bg-blue-700 hover:text-white ${
-                      isActive ? 'bg-blue-700 text-white' : ''
-                    }`
-                  }
-                >
-                  {item.icon}
-                  <span>{item.text}</span>
-                </NavLink>
-              ) : (
-                <div>
-                  <button
-                    onClick={() => toggleDropdown(idx)}
-                    className="w-full flex items-center justify-between gap-2 p-2 rounded hover:bg-blue-700 hover:text-white"
+          {/* Navigation */}
+          <nav className="mt-2 space-y-2 px-10">
+            {navItems.map((item, idx) => (
+              <div key={idx}>
+                {item.link ? (
+                  <NavLink
+                    to={item.link}
+                    end
+                    onClick={onNavigate}
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 p-2 rounded hover:bg-blue-700 hover:text-white ${
+                        isActive ? 'bg-blue-700 text-white' : ''
+                      }`
+                    }
                   >
-                    <span className="flex items-center gap-2">
-                      {item.icon}
-                      {item.text}
-                    </span>
-                    <span>{openDropdown === idx ? '▲' : '▼'}</span>
-                  </button>
-                  {item.children && openDropdown === idx && (
-                    <div className="ml-6 mt-1 space-y-1">
-                      {item.children.map((sub, subIdx) => (
-                        <NavLink
-                          key={subIdx}
-                          to={sub.link}
-                          onClick={onNavigate}
-                          className={({ isActive }) =>
-                            `flex items-center gap-2 p-1 text-sm hover:underline ${
-                              isActive ? 'text-blue-500 font-medium underline' : ''
-                            }`
-                          }
-                        >
-                          {sub.icon}
-                          <span>{sub.text}</span>
-                        </NavLink>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
-      </div>
+                    {item.icon}
+                    <span>{item.text}</span>
+                  </NavLink>
+                ) : (
+                  <div>
+                    <button
+                      onClick={() => toggleDropdown(idx)}
+                      className="w-full flex items-center justify-between gap-2 p-2 rounded hover:bg-blue-700 hover:text-white"
+                    >
+                      <span className="flex items-center gap-2">
+                        {item.icon}
+                        {item.text}
+                      </span>
+                      <span>{openDropdown === idx ? '▲' : '▼'}</span>
+                    </button>
+                    {item.children && openDropdown === idx && (
+                      <div className="ml-6 mt-1 space-y-1">
+                        {item.children.map((sub, subIdx) => (
+                          <NavLink
+                            key={subIdx}
+                            to={sub.link}
+                            onClick={onNavigate}
+                            className={({ isActive }) =>
+                              `flex items-center gap-2 p-1 text-sm hover:underline ${
+                                isActive ? 'text-blue-500 font-medium underline' : ''
+                              }`
+                            }
+                          >
+                            {sub.icon}
+                            <span>{sub.text}</span>
+                          </NavLink>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
 
-      {/* Logout Button */}
-      <div className="px-10 py-4 border-t border-blue-600">
-        <button
-          onClick={handleLogout}
-          className="w-full flex items-center gap-2 p-2 rounded hover:bg-blue-600"
-        >
-          <MdPermIdentity className="w-5 h-5" />
-          <span>Logout</span>
-        </button>
-      </div>
-    </aside>
+          {/* Logout */}
+          <div className="mt-6 px-10 py-4 border-t border-blue-600 ">
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-2 p-2 rounded hover:bg-blue-600"
+            >
+              <MdPermIdentity className="w-5 h-5" />
+              <span>Logout</span>
+            </button>
+          </div>
+        </aside>
+      )}
+    </>
   );
 };
 
