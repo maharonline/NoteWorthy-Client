@@ -99,7 +99,7 @@ const Sidebar = ({ onNavigate = () => {} }) => {
           </nav>
 
           {/* Logout */}
-          <div className="mt-6 px-10">
+          <div className="mt-6 px-10 py-4 border-t border-blue-600 ">
             <button
               onClick={handleLogout}
               className="w-full flex items-center gap-2 p-2 rounded hover:bg-blue-600"
