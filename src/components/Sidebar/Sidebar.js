@@ -40,7 +40,7 @@ const Sidebar = ({ onNavigate = () => {} }) => {
         <aside className="w-64 dark:text-white min-h-screen overflow-y-auto shadow fixed z-40">
           {/* Logo */}
           <div className="flex flex-col items-center">
-            <img src="/Assets/image/Logo.png" alt="Logo" className="h-32 w-auto object-contain" />
+            <img src="/Assets/image/logo.png" alt="Logo" className="h-32 w-auto object-contain" />
           </div>
 
           {/* Navigation */}
