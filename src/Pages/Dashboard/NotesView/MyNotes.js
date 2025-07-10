@@ -29,7 +29,7 @@ const MyNotes = () => {
 
   return (
     <div className="min-h-screen px-4 sm:px-8 py-6 heading-color">
-      <div className="flex justify-end mb-4">
+      <div className="hidden">
         <ThemeToggle />
       </div>
       <h2 className="text-2xl font-bold mb-6 text-center dark:text-white">My Notes</h2>

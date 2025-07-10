@@ -50,7 +50,7 @@ export default function RegisterTeacher() {
 
       {/*==== Right Side Form Section ====*/}
       <div className="flex justify-center flex-col items-center w-full lg:w-1/2 min-h-screen relative dashboard-bg">
-        <div className="absolute top-1 left-4">
+        <div className="absolute top-0.5 left-4">
           <ThemeToggle />
         </div>
         <div className="absolute top-1 right-4">
@@ -60,7 +60,7 @@ export default function RegisterTeacher() {
         </div>
 
 
-        <h2 className="text-3xl font-bold mb-4 ">Create New Account</h2>
+        <h2 className="text-3xl font-bold mt-10 ">Create New Account</h2>
         <p className="mb-6">Please enter your details</p>
         <form onSubmit={handleSubmit}
           className="w-full max-w-md p-6 sm:p-8 rounded-xl border  border-blue-600 shadow-md card-bg">

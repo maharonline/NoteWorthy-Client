@@ -63,75 +63,79 @@ export default function AdminApprovalTable() {
   return (
     <>
 
-      <div className="flex min-h-screen font-raleway text-gray-800 dark:text-white">
-        <main className="flex-1 p-6 w-full">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-            <h1 className="text-2xl font-bold">Teacher Approval Panel</h1>
-            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-              <div className="hidden">
-                <ThemeToggle />
-              </div>
-              <input
-                type="text"
-                placeholder="Search teachers..."
-                value={searchText}
-                onChange={(e) => handleSearch(e.target.value)}
-                className="border border-blue-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-white dark:bg-[#1e293b] px-4 py-2 rounded-md w-full md:w-80"
-              />
-            </div>
-          </div>
-
-          {/*==== Table ====*/}
-          <div className="overflow-x-auto shadow-md rounded-xl card-bg">
-            <table className="min-w-full divide-y  divide-gray-300 dark:divide-gray-800">
-              <thead className="card-bg">
-                <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold">Employee ID</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold">User Name</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold">Department</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold">Status</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {filteredDocuments.map((doc) => (
-                  <tr key={doc._id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                    <td className="px-6 py-4 text-sm">{doc.employeeID}</td>
-                    <td className="px-6 py-4 text-sm">{doc.userName}</td>
-                    <td className="px-6 py-4 text-sm">{doc.department}</td>
-                    <td className="px-6 py-4">
-                      <span
-                        className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${doc.status === 'pending'
-                          ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-700 dark:text-yellow-100'
-                          : 'bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-100'
-                          }`}
-                      >
-                        {doc.status || 'Unknown'}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 space-x-2 text-sm">
-                      <button
-                        onClick={() => handleApproved(doc)}
-                        className={`px-3 py-1 rounded text-white bg-green-600 hover:bg-green-700 transition disabled:opacity-50`}
-                        disabled={doc.status === 'Approved'}
-                      >
-                        Approve
-                      </button>
-                      <button
-                        onClick={() => handleRejected(doc)}
-                        className="px-3 py-1 rounded text-white bg-red-600 hover:bg-red-700 transition"
-                      >
-                        Reject
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </main>
+   <div className="flex flex-col min-h-screen font-raleway  text-gray-800 dark:text-white">
+  <main className="flex-1 p-4 sm:p-6 w-full">
+    {/* Header */}
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+      <h1 className="text-2xl font-bold text-center md:text-left w-full mt-5">Teacher Approval Panel</h1>
+      <div className="hidden">
+        <ThemeToggle />
       </div>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
+        <input
+          type="text"
+          placeholder="Search teachers..."
+          value={searchText}
+          onChange={(e) => handleSearch(e.target.value)}
+          className="border border-blue-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-white dark:bg-[#1e293b] px-4 py-2 rounded-md w-full sm:w-72"
+        />
+      </div>
+    </div>
+
+    {/* Table - no scroll between 640px and 965px */}
+    <div className="w-full rounded-xl shadow-md card-bg">
+      <table className="w-full table-auto text-xs sm:text-sm divide-y divide-gray-300 dark:divide-gray-700">
+        <thead className="card-bg">
+          <tr className="text-left">
+            <th className="px-2 sm:px-3 md:px-4 py-2 font-semibold whitespace-normal break-words">Employee ID</th>
+            <th className="px-2 sm:px-3 md:px-4 py-2 font-semibold whitespace-normal break-words">User Name</th>
+            <th className="px-2 sm:px-3 md:px-4 py-2 font-semibold whitespace-normal break-words">Department</th>
+            <th className="px-2 sm:px-3 md:px-4 py-2 font-semibold whitespace-normal break-words">Status</th>
+            <th className="px-2 sm:px-3 md:px-4 py-2 font-semibold whitespace-normal break-words">Actions</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          {filteredDocuments.map((doc) => (
+            <tr key={doc._id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+              <td className="px-2 sm:px-3 md:px-4 py-2 break-words whitespace-normal">{doc.employeeID}</td>
+              <td className="px-2 sm:px-3 md:px-4 py-2 break-words whitespace-normal">{doc.userName}</td>
+              <td className="px-2 sm:px-3 md:px-4 py-2 break-words whitespace-normal">{doc.department}</td>
+              <td className="px-2 sm:px-3 md:px-4 py-2">
+                <span className={`inline-block px-2 py-1 text-[10px] sm:text-xs font-medium rounded-full
+                  ${doc.status === 'pending'
+                    ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-700 dark:text-yellow-100'
+                    : 'bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-100'
+                  }`}>
+                  {doc.status || 'Unknown'}
+                </span>
+              </td>
+              <td className="px-2 sm:px-3 md:px-4 py-2 space-x-1 flex flex-wrap sm:flex-nowrap gap-1">
+                <button
+                  onClick={() => handleApproved(doc)}
+                  className="px-2 sm:px-3 py-1 text-[10px] sm:text-sm rounded text-white bg-green-600 hover:bg-green-700 transition disabled:opacity-50"
+                  disabled={doc.status === 'Approved'}
+                >
+                  Approve
+                </button>
+                <button
+                  onClick={() => handleRejected(doc)}
+                  className="px-2 sm:px-3 py-1 text-[10px] sm:text-sm rounded text-white bg-red-600 hover:bg-red-700 transition"
+                >
+                  Reject
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+
+
+
+
 
     </>
   );

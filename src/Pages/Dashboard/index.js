@@ -7,7 +7,6 @@ import AdminApprovalTable from './Admin/AdminAproval';
 import Subjects from './NotesView/Subjects';
 import CourseNotes from './NotesView/Notes';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { Bars3Icon } from '@heroicons/react/24/outline';
 import UploadNotesForm from './UploadNotes';
 import { useAuthContext } from '../../context/AuthContext';
 import NotFound from '../../components/NotFound';
@@ -19,6 +18,7 @@ import PasswordUpdate from './Settings/PasswordUpdate/PasswordUpdate.js';
 import MyNotes from './NotesView/MyNotes.js';
 import QuizMaster from './Quiz/quizMaster.js';
 import QuizSubjects from './Quiz/QuizSubject.js';
+import { Menu, X } from 'lucide-react';
 
 
 export default function Dashboard() {
@@ -38,26 +38,40 @@ export default function Dashboard() {
   return (
     <div className="flex dashboard-bg font-raleway">
 
-      {isMobile ? (
-        <>
-          <button
-            className="p-2 fixed top-4 left-4 z-50  rounded shadow text-blue-700"
-            onClick={() => setDrawerOpen(!drawerOpen)}
-          >
-            <Bars3Icon className="w-6 h-6" />
-          </button>
-          {drawerOpen && (
-            <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={() => setDrawerOpen(false)}>
-              <div className="absolute left-0 top-0 dark:bg-gray-900 bg-white w-64 h-full shadow" onClick={(e) => e.stopPropagation()}>
-                <Sidebar />
-              </div>
-            </div>
-          )}
-        </>
+{isMobile ? (
+  <>
+    {/* Toggle Button */}
+    <button
+      className="p-2 fixed top-4 left-4 z-50 rounded shadow text-blue-700 bg-white dark:bg-gray-800"
+      onClick={() => setDrawerOpen(!drawerOpen)}
+    >
+      {drawerOpen ? (
+      <X size={20} className="text-blue-600" />
       ) : (
-        <Sidebar />
-
+        <Menu size={20} className="text-blue-600" />
       )}
+    </button>
+
+    {/* Sidebar Drawer */}
+    {drawerOpen && (
+      <div
+        className="fixed inset-0 z-40 bg-black bg-opacity-50"
+        onClick={() => setDrawerOpen(false)}
+      >
+        <div
+          className="absolute left-0 top-0 dark:bg-gray-900 bg-white w-64 h-full shadow overflow-y-auto max-h-screen"
+          onClick={(e) => e.stopPropagation()}
+        >
+         
+           <Sidebar onNavigate={() => setDrawerOpen(false)} />
+        </div>
+      </div>
+    )}
+  </>
+) : (
+  <Sidebar />
+)}
+
 
       <main
         className={`flex-1 transition-all duration-300 ${!isMobile ? 'ml-64' : ''}`}
@@ -99,11 +113,11 @@ export default function Dashboard() {
                   }
                 />
                 <Route path="/feedback" element={<Feedbacks />} />
-                <Route path="/myNotes" element={users?.roles?.includes("Admin") ? (
-                    <MyNotes />
-                  ) : (
-                    <AccessDenied />
-                  )} />
+                <Route path="/myNotes" element={users?.roles?.includes("Teacher") || users?.roles?.includes("Admin") ? (
+                  <MyNotes />
+                ) : (
+                  <AccessDenied />
+                )} />
                 <Route path="/deleteAccount" element={<DeleteAccount />} />
                 <Route path="/quizSubject" element={<QuizSubjects />} />
                 <Route path="quiz/:subject" element={<QuizMaster />} />

@@ -57,7 +57,7 @@ export default function Register() {
         <div className="absolute top-1 left-4">
           <ThemeToggle />
         </div>
-        <div className="absolute top-1 right-4" >
+        <div className="absolute top-0.5 right-4" >
           <button className="px-4 py-2 text-sm border border-blue-500 text-blue-600 rounded hover:bg-blue-600 hover:text-white" onClick={goTeacherRegistrationPage}>
             Register as a Teacher
           </button>
@@ -65,7 +65,7 @@ export default function Register() {
 
         
 
-          <h2 className="text-3xl font-bold mb-4 ">Create New Account</h2>
+          <h2 className="text-3xl font-bold mt-10 ">Create New Account</h2>
           <p className="mb-6">Please enter your details</p>
         
         <form onSubmit={handleSubmit} className="w-full max-w-md  p-6 sm:p-8 rounded-xl border border-blue-600 card-bg shadow-md">

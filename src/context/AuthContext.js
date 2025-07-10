@@ -100,7 +100,7 @@ const handleLogout = async () => {
       );
       dispatch({ type: "SET_LOGGED_OUT" });
       setUsers(null);
-      navigate("/auth/login");
+      navigate("/");
       window.toastify(res.data.message, "success");
     } catch (error) {
       console.error("Logout Error:", error);
