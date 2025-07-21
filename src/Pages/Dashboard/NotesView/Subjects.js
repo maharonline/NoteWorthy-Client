@@ -2,9 +2,11 @@ import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useAuthContext } from '../../../context/AuthContext';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 const Subjects = () => {
-  const { ThemeToggle, users } = useAuthContext();
+  const { ThemeToggle, users,themeState } = useAuthContext();
   const [searchTerm, setSearchTerm] = useState('');
   const [allSubjects, setAllSubjects] = useState([]);
 
@@ -20,15 +22,32 @@ const Subjects = () => {
   }, []);
 
   // Delete subject
-  const handleDelete = async (id) => {
-    try {
-      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/subject/delete/${id}`);
-      window.toastify(res.data.message, "success");
-      setAllSubjects((prev) => prev.filter((item) => item._id !== id));
-    } catch (error) {
-      console.error("Deletion failed", error);
-      window.toastify("Failed to delete subject", "error");
-    }
+const handleDelete = async (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you really want to delete this Subject and its notes?",
+      icon: 'warning',
+      background: themeState === 'dark' ? '#0f172a' : '',
+      color: themeState === 'dark' ? '#fff' : '',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.delete(`${process.env.REACT_APP_API_URL}/subject/delete/${id}`);
+          window.toastify(res.data.message, "success");
+          setAllSubjects((prev) => prev.filter((item) => item._id !== id));
+        } catch (error) {
+          console.error("Deletion failed", error);
+          window.toastify("Failed to delete subject", "error");
+        }
+      } else {
+        // User cancelled the deletion
+        window.toastify("Deletion cancelled", "info");
+      }
+    });
   };
 
   // Load subjects on mount
