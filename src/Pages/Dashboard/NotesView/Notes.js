@@ -3,9 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useAuthContext } from '../../../context/AuthContext';
 import axios from 'axios';
 import { EyeIcon, DownloadIcon, Heart, MessageCircleMore, Trash } from 'lucide-react';
+import Swal from 'sweetalert2';
+
 
 export default function CourseNotes() {
-  const { users, ThemeToggle } = useAuthContext();
+  const { users, ThemeToggle,themeState } = useAuthContext();
   const { subjectTitle, id } = useParams();
 
   const [notes, setNotes] = useState([]);
@@ -76,17 +78,45 @@ export default function CourseNotes() {
       console.error("Feedback error:", error);
     }
   };
-
-  const handleDelete = async (id) => {
-    try {
-      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/notes/delete/${id}`);
-      window.toastify(res.data.message, "success");
-      setNotes((prev) => prev.filter((item) => item._id !== id));
-    } catch (error) {
-      console.error("Deletion failed", error);
-      window.toastify("Failed to delete feedback", "error");
-    }
+  
+// Note Deleteion
+const handleDelete = async (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you really want to delete this note?",
+      icon: 'warning',
+      background: themeState === 'dark' ? '#0f172a' : '',
+      color: themeState === 'dark' ? '#fff' : '',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.delete(`${process.env.REACT_APP_API_URL}/notes/delete/${id}`);
+          window.toastify(res.data.message, "success");
+          setNotes((prev) => prev.filter((item) => item._id !== id));
+        } catch (error) {
+          console.error("Deletion failed", error);
+          window.toastify("Failed to delete note", "error");
+        }
+      } else {
+        window.toastify("Note deletion cancelled", "info");
+      }
+    });
   };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     const res = await axios.delete(`${process.env.REACT_APP_API_URL}/notes/delete/${id}`);
+  //     window.toastify(res.data.message, "success");
+  //     setNotes((prev) => prev.filter((item) => item._id !== id));
+  //   } catch (error) {
+  //     console.error("Deletion failed", error);
+  //     window.toastify("Failed to delete feedback", "error");
+  //   }
+  // };
   return (
     <div className="min-h-screen px-4 sm:px-8 py-6 text-gray-700 dark:text-white">
       {/* Header */}
