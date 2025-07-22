@@ -203,7 +203,7 @@ const handleDelete = async (id) => {
                   <EyeIcon size={18} />
                 </button>
 
-                {(users?.roles?.includes("Students")) && (
+                {(users?.roles?.includes("Admin") || users?.roles?.includes("Teacher")) && (
                   <button
                   onClick={() => setExpandedNoteId(expandedNoteId === note._id ? null : note._id)}
                   title="Give Feedback"
