@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   MdMenuBook, MdHome, MdSettings, MdPermIdentity, MdCloudUpload, MdFeedback, MdEdit,
-  MdLock, MdDeleteForever, MdTableView, MdDescription, MdChecklist,
+  MdLock, MdDeleteForever, MdTableView, MdDescription, MdChecklist,MdVerifiedUser,MdAccessibility,
 } from 'react-icons/md';
 import { useAuthContext } from '../../context/AuthContext';
 
