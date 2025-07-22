@@ -14,7 +14,7 @@ export default function PendingApproval() {
       <div className="card-bg shadow-2xl rounded-2xl p-8 text-center w-full max-w-md relative border border-blue-700 ">
         {/*==== Logo ====*/}
         <img
-          src="/Assets/image/Logo.png"
+          src="/Assets/image/logo.png"
           alt="Noteworthy Logo"
           className="h-20 mx-auto mb-4"
         />
