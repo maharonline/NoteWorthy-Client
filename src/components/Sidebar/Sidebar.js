@@ -12,9 +12,17 @@ const navItems = [
   { icon: <MdCloudUpload className="w-5 h-5" />, text: 'Upload Notes', link: '/dashboard/uploadNotes' },
   { icon: <MdDescription className="w-5 h-5" />, text: 'My Notes', link: '/dashboard/myNotes' },
   { icon: <MdChecklist className="w-5 h-5" />, text: 'MCQs Quiz', link: '/dashboard/quizSubject' },
-  { icon: <MdTableView className="w-5 h-5" />, text: 'Approval Table', link: '/dashboard/approvalTable' },
+  // { icon: <MdTableView className="w-5 h-5" />, text: 'Approval Table', link: '/dashboard/approvalTable' },
   { icon: <MdFeedback className="w-5 h-5" />, text: 'Feedback', link: '/dashboard/feedback' },
   { icon: <MdPermIdentity className="w-5 h-5" />, text: 'Profile', link: '/dashboard/profile' },
+  {
+    icon: <MdTableView className="w-5 h-5" />,
+    text: 'Approval',
+    children: [
+      { icon: <MdAccessibility className="w-5 h-5" />, text: "Teacher Approval", link: '/dashboard/approvalTable' },
+      { icon: <MdVerifiedUser className="w-5 h-5" />, text: "Deleted User", link: '/dashboard/deletedUser' }
+    ]
+  },
   {
     icon: <MdSettings className="w-5 h-5" />,
     text: 'Settings',
