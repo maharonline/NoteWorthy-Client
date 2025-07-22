@@ -607,6 +607,15 @@ const Home = () => {
 
     {/* Welcome */}
     <h1 className="text-xl font-semibold mt-4">Welcome back, {users?.userName}!</h1>
+<div className="badge bg-green-700 text-white font-semibold mt-1 inline-flex items-center gap-1">
+          <svg className="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g fill="currentColor">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" />
+              <polyline points="7 13 10 16 17 8" fill="none" stroke="currentColor" strokeWidth="2" />
+            </g>
+          </svg>
+          {users?.roles}
+        </div>
 
     {/* Notifications */}
     <div className="mt-6">
