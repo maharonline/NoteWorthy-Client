@@ -130,9 +130,7 @@ import { NavLink } from 'react-router-dom';
 import {
   MdMenuBook, MdHome, MdSettings, MdPermIdentity,
   MdCloudUpload, MdFeedback, MdEdit, MdLock, MdDeleteForever, MdDescription, MdChecklist,
-  MdVerifiedUser,
-  MdAccessibility,
-  MdVerified,
+  MdVerifiedUser, MdAccessibility, MdVerified,
 } from 'react-icons/md';
 import { useAuthContext } from '../../context/AuthContext';
 
@@ -171,86 +169,83 @@ const Sidebar = () => {
     setOpenDropdown((prev) => (prev === index ? null : index));
   };
 
-  return (
-    <>
-      {users?.status === "pending" && users?.roles?.includes("Teacher") ? null : (
-        <aside className="w-64 h-screen shadow fixed z-40 overflow-y-auto  dark:text-white">
-          {/* Logo Section */}
-          <div className="flex flex-col items-center pt-4">
-            <img
-              src="/Assets/image/logo.png"
-              alt="Logo"
-              className="h-32 w-auto object-contain"
-            />
-          </div>
+  if (users?.status === "pending" && users?.roles?.includes("Teacher")) {
+    return null;
+  }
 
-          {/* Navigation Menu */}
-          <nav className="mt-2 space-y-2 px-6 pb-20">
-            {navItems.map((item, idx) => (
-              <div key={idx}>
-                {item.link ? (
-                  <NavLink
-                    to={item.link}
-                    end
-                    className={({ isActive }) =>
-                      `flex items-center gap-2 p-2 rounded hover:bg-blue-700 hover:text-white transition ${
-                        isActive ? "bg-blue-700 text-white" : ""
-                      }`
-                    }
-                  >
+  return (
+    <aside className="w-64 fixed z-40 inset-y-0 left-0  border-r shadow-md overflow-y-auto md:h-screen max-h-screen sm:max-h-[100dvh]">
+      {/* Logo */}
+      <div className="flex flex-col items-center py-4">
+        <img src="/Assets/image/logo.png" alt="Logo" className="h-32 w-auto object-contain" />
+      </div>
+
+      {/* Navigation */}
+      <nav className="px-4 space-y-2 pb-24">
+        {navItems.map((item, idx) => (
+          <div key={idx}>
+            {item.link ? (
+              <NavLink
+                to={item.link}
+                end
+                className={({ isActive }) =>
+                  `flex items-center gap-2 p-2 rounded hover:bg-blue-700 hover:text-white transition ${
+                    isActive ? "bg-blue-700 text-white" : ""
+                  }`
+                }
+              >
+                {item.icon}
+                <span>{item.text}</span>
+              </NavLink>
+            ) : (
+              <div>
+                <button
+                  onClick={() => toggleDropdown(idx)}
+                  className="w-full flex items-center justify-between gap-2 p-2 rounded hover:bg-blue-700 hover:text-white transition"
+                >
+                  <span className="flex items-center gap-2">
                     {item.icon}
-                    <span>{item.text}</span>
-                  </NavLink>
-                ) : (
-                  <div>
-                    <button
-                      onClick={() => toggleDropdown(idx)}
-                      className="w-full flex items-center justify-between gap-2 p-2 rounded hover:bg-blue-700 hover:text-white transition"
-                    >
-                      <span className="flex items-center gap-2">
-                        {item.icon}
-                        {item.text}
-                      </span>
-                      <span>{openDropdown === idx ? "▲" : "▼"}</span>
-                    </button>
-                    {item.children && openDropdown === idx && (
-                      <div className="ml-6 mt-1 space-y-1">
-                        {item.children.map((sub, subIdx) => (
-                          <NavLink
-                            key={subIdx}
-                            to={sub.link}
-                            className={({ isActive }) =>
-                              `flex items-center gap-2 p-1 text-sm rounded hover:underline ${
-                                isActive ? "text-blue-500 font-medium underline" : ""
-                              }`
-                            }
-                          >
-                            {sub.icon}
-                            <span>{sub.text}</span>
-                          </NavLink>
-                        ))}
-                      </div>
-                    )}
+                    {item.text}
+                  </span>
+                  <span>{openDropdown === idx ? "▲" : "▼"}</span>
+                </button>
+                {item.children && openDropdown === idx && (
+                  <div className="ml-6 mt-1 space-y-1">
+                    {item.children.map((sub, subIdx) => (
+                      <NavLink
+                        key={subIdx}
+                        to={sub.link}
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-1 text-sm rounded hover:underline ${
+                            isActive ? "text-blue-500 font-medium underline" : ""
+                          }`
+                        }
+                      >
+                        {sub.icon}
+                        <span>{sub.text}</span>
+                      </NavLink>
+                    ))}
                   </div>
                 )}
               </div>
-            ))}
-          </nav>
-
-          {/* Logout Button */}
-          <div className="px-6 mt-2  py-3 border-t border-gray-200">
-            <button
-              onClick={handleLogout}
-              className="w-full flex items-center gap-2 p-2 rounded hover:bg-blue-600 transition"
-            >
-              <MdPermIdentity className="w-5 h-5" />
-              <span>Logout</span>
-            </button>
+            )}
           </div>
-        </aside>
-      )}
-    </>
+        ))}
+      </nav>
+
+      {/* Logout */}
+      <div className="absolute bottom-0 left-0 w-full  px-6 py-4 border-t border-gray-200 ">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center gap-2 p-2 rounded hover:bg-blue-600 transition"
+        >
+          <MdPermIdentity className="w-5 h-5" />
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
   );
 };
 
-export default Sidebar;
+export default Sidebar;
+
