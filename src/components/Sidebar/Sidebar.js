@@ -174,7 +174,7 @@ const Sidebar = () => {
   return (
     <>
       {users?.status === "pending" && users?.roles?.includes("Teacher") ? null : (
-        <aside className="w-64 h-screen shadow fixed z-40 overflow-y-auto bg-white dark:bg-gray-900 dark:text-white">
+        <aside className="w-64 h-screen shadow fixed z-40 overflow-y-auto  dark:text-white">
           {/* Logo Section */}
           <div className="flex flex-col items-center pt-4">
             <img
