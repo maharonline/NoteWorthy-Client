@@ -187,7 +187,7 @@ export default function RegisterTeacher() {
     }
 
     let jobLetterUrl = "";
-    if(!jobLetterUrl){return window.toastify("Job Letter Required","warning")}
+    if (!file) return window.toastify("Job Letter Required", "warning");
     if (file) {
       try {
        
