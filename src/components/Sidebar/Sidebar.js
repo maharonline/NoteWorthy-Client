@@ -174,7 +174,7 @@ const Sidebar = () => {
   }
 
   return (
-    <aside className="w-64 fixed z-40 inset-y-0 left-0 bg-white dark:bg-gray-900 border-r shadow-md max-h-screen sm:max-h-[100dvh] flex flex-col">
+    <aside className="w-64 fixed z-40 inset-y-0 left-0  border-r shadow-md max-h-screen sm:max-h-[100dvh] flex flex-col">
   {/* Logo */}
   <div className="flex flex-col items-center py-4 shrink-0">
     <img src="/Assets/image/logo.png" alt="Logo" className="h-24 object-contain" />
@@ -235,7 +235,7 @@ const Sidebar = () => {
   </nav>
 
   {/* Logout Button */}
-  <div className="shrink-0 px-6 py-4 border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div className="shrink-0 px-6 py-4 border-t  dark:bg-gray-900">
     <button
       onClick={handleLogout}
       className="w-full flex items-center gap-2 p-2 rounded hover:bg-blue-600 transition"
